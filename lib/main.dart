@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jsonplaceholder/views/screens/user_screen.dart';
 import 'package:flutter_jsonplaceholder/views/screens/users_screen.dart';
 
 void main() {
@@ -8,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: UsersScreen.routeName,
       routes: {
         UsersScreen.routeName: (context) => const UsersScreen(),
-        // UserScreen.routeName: (context) => const UserScreen(),
+        UserScreen.routeName: (context) => const UserScreen(),
       },
     );
   }

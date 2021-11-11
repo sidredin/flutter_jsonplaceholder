@@ -3,7 +3,7 @@ import 'package:flutter_jsonplaceholder/models/user.dart';
 import 'dart:async';
 
 import 'package:flutter_jsonplaceholder/services/jsonplaceholder_service.dart';
-import 'package:flutter_jsonplaceholder/views/styling/jsonplaceholder_decorations.dart';
+import 'package:flutter_jsonplaceholder/services/widgets_lists_service.dart';
 
 class UsersScreen extends StatefulWidget {
   const UsersScreen({Key? key}) : super(key: key);
@@ -25,23 +25,26 @@ class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fetch Data Example',
+      title: 'Users',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Fetch Data Example'),
+          title: const Text('Users'),
         ),
         body: Container(
           padding: const EdgeInsets.all(10),
           child: Center(
             child: FutureBuilder<List<User>>(
               future: futureUsers,
-              builder: (context, snapshot) {
+              builder: (builderContext, snapshot) {
                 if (snapshot.hasData) {
                   return ListView(
-                    children: getUsersList(snapshot.data!),
+                    children: WidgetsListsService.getUsersList(
+                      context,
+                      snapshot.data!,
+                    ),
                   );
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
@@ -51,25 +54,6 @@ class _UsersScreenState extends State<UsersScreen> {
                 return const CircularProgressIndicator();
               },
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  getUsersList(List<User> users) {
-    return List<Widget>.from(
-      users.map(
-        (e) => Container(
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.only(bottom: 10),
-          decoration: JsonplaceholderDecorations.usersElement,
-          child: Column(
-            children: [
-              Text('Username: ${e.username}'),
-              Text('Name: ${e.name}'),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.read_more)),
-            ],
           ),
         ),
       ),
