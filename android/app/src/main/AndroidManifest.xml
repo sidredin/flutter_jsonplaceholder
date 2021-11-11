@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.sidredin.flutter_jsonplaceholder">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="flutter_jsonplaceholder"
         android:icon="@mipmap/ic_launcher">

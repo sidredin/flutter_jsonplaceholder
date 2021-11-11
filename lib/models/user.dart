@@ -1,3 +1,6 @@
+import 'package:flutter_jsonplaceholder/models/address.dart';
+import 'package:flutter_jsonplaceholder/models/company.dart';
+
 class User {
   final int id;
   final String username;
@@ -5,8 +8,8 @@ class User {
   final String email;
   final String phone;
   final String website;
-  final Map<String, String> company;
-  final Map<String, String> address;
+  final Company company;
+  final Address address;
 
   User({
     required this.id,
@@ -27,8 +30,8 @@ class User {
       email: json['email'],
       phone: json['phone'],
       website: json['website'],
-      company: json['company'],
-      address: json['address'],
+      company: Company.fromJson(json['company']),
+      address: Address.fromJson(json['address']),
     );
   }
 }
