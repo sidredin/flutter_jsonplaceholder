@@ -35,78 +35,64 @@ class WidgetsListsService {
   }
 
   static getPostsList(BuildContext context, List<Post> posts) {
-    List<Widget> postsList = List<Widget>.from(
-      posts.sublist(0, 3).map(
-            (e) => Container(
-              // padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.only(top: 5),
-              // decoration: JsonplaceholderDecorations.usersElement,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    e.title.toUpperCase(),
-                    style: JsonplaceholderTextStyles.headerTextStyle,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(e.body.split('\n')[0]),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.read_more),
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.zero,
-                  ),
-                ],
+    List<Widget> postsWidgetsList = List<Widget>.from(
+      posts.map(
+        (e) => Container(
+          // padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.only(top: 5),
+          // decoration: JsonplaceholderDecorations.usersElement,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                e.title.toUpperCase(),
+                style: JsonplaceholderTextStyles.headerTextStyle,
               ),
-            ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(e.body.split('\n')[0]),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.read_more),
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.zero,
+              ),
+            ],
           ),
-    );
-
-    postsList.add(
-      TextButton(
-        onPressed: () {},
-        child: const Text('All posts'),
+        ),
       ),
     );
 
-    return postsList;
+    return postsWidgetsList;
   }
 
   static getAlbumsList(BuildContext context, List<Album> albums) {
-    List<Widget> albumsList = List<Widget>.from(
-      albums.sublist(0, 3).map(
-            (e) => Container(
-              // padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.only(top: 5),
-              // decoration: JsonplaceholderDecorations.usersElement,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    e.title.toUpperCase(),
-                    style: JsonplaceholderTextStyles.headerTextStyle,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.read_more),
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.zero,
-                  ),
-                ],
+    List<Widget> albumsWidgetsList = List<Widget>.from(
+      albums.map(
+        (e) => Container(
+          // padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.only(top: 5),
+          // decoration: JsonplaceholderDecorations.usersElement,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                e.title.toUpperCase(),
+                style: JsonplaceholderTextStyles.headerTextStyle,
               ),
-            ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.read_more),
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.zero,
+              ),
+            ],
           ),
-    );
-
-    albumsList.add(
-      TextButton(
-        onPressed: () {},
-        child: const Text('All albums'),
+        ),
       ),
     );
 
-    return albumsList;
+    return albumsWidgetsList;
   }
 }

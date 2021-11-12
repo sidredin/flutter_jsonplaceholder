@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jsonplaceholder/views/screens/albums_screen.dart';
+import 'package:flutter_jsonplaceholder/views/screens/posts_screen.dart';
 import 'package:flutter_jsonplaceholder/views/screens/user_screen.dart';
 import 'package:flutter_jsonplaceholder/views/screens/users_screen.dart';
 
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
       routes: {
         UsersScreen.routeName: (context) => const UsersScreen(),
         UserScreen.routeName: (context) => const UserScreen(),
+        PostsScreen.routeName: (context) => const PostsScreen(),
+        AlbumsScreen.routeName: (context) => const AlbumsScreen(),
       },
     );
   }

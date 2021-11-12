@@ -6,6 +6,8 @@ import 'dart:async';
 
 import 'package:flutter_jsonplaceholder/services/jsonplaceholder_service.dart';
 import 'package:flutter_jsonplaceholder/services/widgets_lists_service.dart';
+import 'package:flutter_jsonplaceholder/views/screens/albums_screen.dart';
+import 'package:flutter_jsonplaceholder/views/screens/posts_screen.dart';
 import 'package:flutter_jsonplaceholder/views/styling/jsonplaceholder_text_styles.dart';
 
 class UserScreen extends StatefulWidget {
@@ -28,11 +30,6 @@ class _UserScreenState extends State<UserScreen> {
     user = args['user'];
     futurePosts = JsonplaceholderService.fetchUserPosts(user.id);
     futureAlbums = JsonplaceholderService.fetchUserAlbums(user.id);
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
@@ -87,12 +84,26 @@ class _UserScreenState extends State<UserScreen> {
                 future: futurePosts,
                 builder: (builderContext, snapshot) {
                   if (snapshot.hasData) {
+                    List<Widget> postsWidgetsList =
+                        WidgetsListsService.getPostsList(
+                      context,
+                      snapshot.data!.sublist(0, 3),
+                    );
+                    postsWidgetsList.add(
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            PostsScreen.routeName,
+                            arguments: {'posts': snapshot.data!},
+                          );
+                        },
+                        child: const Text('All posts'),
+                      ),
+                    );
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: WidgetsListsService.getPostsList(
-                        context,
-                        snapshot.data!,
-                      ),
+                      children: postsWidgetsList,
                     );
                   } else if (snapshot.hasError) {
                     return Text('${snapshot.error}');
@@ -110,12 +121,26 @@ class _UserScreenState extends State<UserScreen> {
                 future: futureAlbums,
                 builder: (builderContext, snapshot) {
                   if (snapshot.hasData) {
+                    List<Widget> albumsWidgetsList =
+                        WidgetsListsService.getAlbumsList(
+                      context,
+                      snapshot.data!.sublist(0, 3),
+                    );
+                    albumsWidgetsList.add(
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            AlbumsScreen.routeName,
+                            arguments: {'albums': snapshot.data!},
+                          );
+                        },
+                        child: const Text('All albums'),
+                      ),
+                    );
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: WidgetsListsService.getAlbumsList(
-                        context,
-                        snapshot.data!,
-                      ),
+                      children: albumsWidgetsList,
                     );
                   } else if (snapshot.hasError) {
                     return Text('${snapshot.error}');
